@@ -1,0 +1,52 @@
+﻿@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@{ 
+    ViewBag.Title = "Thêm mới sản phẩm quản trị";
+}
+
+<form action="~/Admin/Home/ThemSanPham" method="post">
+    <div class="form-group">
+        <div class="form-label-group">
+            <input type="text" name="TenSP" id="inputTen" />
+            <label for="inputTen">Tên sản phẩm ....</label>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="form-label-group">
+            <input type="text" name="ChatLieu" id="inputChatLieu" />
+            <label for="inputChatLieu">Chất liệu sản phẩm ....</label>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="form-label-group">
+            <input type="text" name="Mota" id="inputmota" class="form-control" />
+            <label for="inputmota">Mô tả Hot Deals ....</label>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="form-label-group">
+            <input type="text" name="Motachitiet" id="inputMota" class="form-control">
+            <label for="inputMota">Mô tả chi tiết sản phẩm ....</label>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="form-label-group">
+            <input type="text" name="DacDiem" id="inputDacDiem" class="form-control">
+            <label for="inputDacDiem">Đặc điểm sản phẩm ....</label>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="form-label-group">
+            <input type="text" name="GIA" id="inputmoney" class="form-control">
+            <label for="inputmoney">Giá thành sản phẩm ....</label>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="form-label-group">
+            <input type="text" name="HINHANH" id="inputIMG" class="form-control">
+            <label for="inputIMG">Hình ảnh ....</label>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-lg btn-success btn-block">Thêm mới sản phẩm</button>
+</form>

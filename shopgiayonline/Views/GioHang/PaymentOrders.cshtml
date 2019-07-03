@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "PaymentOrders";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using shopgiayonline.Framework;
+@using shopgiayonline.AddToCart;
+<div class="container">
+    <div class="card card-login mx-auto mt-5">
+        <div class="card-header text-info"><h1>THÔNG TIN ĐƠN HÀNG</h1></div>
+        <div class="card-body">
+            @using (Html.BeginForm())
+            {
+                
+                <div class="form-group">
+                    <div class="form-label-group">
+                        <label for="inputMaDH">Mã đơn hàng</label>
+                        <input type="text" readonly="readonly" id="inputMaDH" name="MaDH" value="" class="form-control" placeholder="Điện thoại khách hàng....." />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-label-group">
+                        <label for="inputMaKH">Mã khách hàng</label>
+                        <input type="hidden" id="inputMaKH" name="MaKH" value="@Model.MaKH" class="form-control" placeholder="Mã khách hàng....." />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-label-group">
+                        <label for="inputTenKH">Tên người nhận</label>
+                        <input type="text" id="inputTenKH" name="TenKH" value="@kh.TenKH" class="form-control" placeholder="Tên khách hàng....." />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-label-group">
+                        <label for="inputSDT">Số điện thoại</label>
+                        <input type="text" id="inputSDT" name="SDTKH" value="@kh.SDTKH" class="form-control" placeholder="Điện thoại khách hàng....." />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-label-group">
+                        <label for="inputAddress">Địa chỉ nhận hàng</label>
+                        <input type="text" id="inputAddress" name="DiaChiKH" value="@kh.DiaChiKH" class="form-control" placeholder="Địa chỉ nhận hàng....." />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-label-group">
+                        <label for="inputDate">Thời gian đặt hàng</label>
+                        <input type="text" id="inputDate" name="NGAYDH" value="@Model.NGAYDH" class="form-control" placeholder="Thời gian giao hàng....." />
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-lg btn-success btn-block">Đặt hàng</button>
+            }
+
+        </div>
+    </div>
+</div>

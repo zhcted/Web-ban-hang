@@ -1,0 +1,163 @@
+﻿@using PagedList.Mvc;
+<!-- Kết thúc-->
+@model PagedList.IPagedList<shopgiayonline.Framework.SANPHAM>
+
+@{
+    ViewBag.Title = "SearchItem";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!--Content-->
+<div class="container-fluid">
+    <div>
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><u><a href="/"><i class="fas fa-chevron-circle-left"></i>Back</a></u></li>
+            <li class="breadcrumb-item">Home</li>
+            <li class="breadcrumb-item">Sports</li>
+            <li class="breadcrumb-item active">Football</li>
+        </ul>
+    </div>
+
+    <h3>Tổng số lượng trong trang : @Model.Count sản phẩm </h3>
+    <h4>Tổng sản phẩm hiện có: <mark>@ViewBag.count</mark> sản phẩm</h4>
+    <div class="row mb-3">
+        <!-- Select box -->
+        <div class="col-sm-3">
+            <div class="container border" style="background-color: #e0ebeb">
+                <div class="text-center mt-2" style=""><h5>YOUR SELECTION</h5></div>
+                <hr style=" margin-left: 10px;">
+                <div class="rotate">
+                    <a href="#collapseGender" data-toggle="collapse" style="text-decoration-line: none;">
+                        <h5 class="nondeco">GENDER <i class="fa fa-chevron-down pull-right"></i></h5>
+                    </a>
+                </div>
+                <div id="collapseGender" class="collapse show">
+                    <!-- checkbox -->
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item" style="background-color: #e0ebeb">
+                            Men
+                            <label class="checkbox">
+                                <input type="checkbox" />
+                                <span class="primary"></span>
+                            </label>
+                        </li>
+                        <li class="list-group-item border-top-0" style="background-color: #e0ebeb">
+                            Women
+                            <label class="checkbox">
+                                <input type="checkbox" />
+                                <span class="primary"></span>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+
+
+                <hr style=" margin-left: 10px;">
+                <div class="mb-3">
+                    <div class="rotate">
+                        <a href="#collapseBrand" data-toggle="collapse" style="text-decoration-line: none;">
+                            <h5>BRANDS <i class="fa fa-chevron-down pull-right"></i></h5>
+                        </a>
+                    </div>
+                    <div id="collapseBrand" class="collapse show">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item" style="background-color: #e0ebeb">
+                                Nike
+                                <label class="checkbox">
+                                    <input type="checkbox" />
+                                    <span class="danger"></span>
+                                </label>
+                            </li>
+                            <li class="list-group-item border-top-0" style="background-color: #e0ebeb">
+                                Adidas
+                                <label class="checkbox">
+                                    <input type="checkbox" />
+                                    <span class="danger"></span>
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Select box end -->
+        <!-- Product holder card-->
+        <div class="col-sm-9" style="z-index:1">
+            <p>
+                   @{
+                       if (ViewBag.NamesortOrder == "name_desc")
+                       {
+                           @Html.ActionLink("Sắp xếp tăng", "SearchItem", new { sortOrder = ViewBag.NamesortOrder })
+
+                       }
+                       else
+                       {
+                           @Html.ActionLink("Sắp xếp giảm", "SearchItem", new { sortOrder = ViewBag.NamesortOrder })
+               
+                       }
+                    }
+                   
+                   
+                @*@Html.Raw(ViewBag.Headings)*@
+            </p>
+            <div class="row">
+                @using (Html.BeginForm("SearchItem", "Index", FormMethod.Get))
+                {
+            <p>
+
+                @Html.Hidden("page", (object)ViewBag.page)
+                @Html.Hidden("sortProperty", (object)ViewBag.sortProperty)
+                @Html.Hidden("sortOrder", (object)ViewBag.sortOrder)
+                @Html.Hidden("size", (object)ViewBag.pageSize)
+            </p>
+            }
+                @foreach (var item in Model)
+             {
+                
+             <div class="col-sm-3">
+                <div class="card">
+                    <img src="~/Images/ImgProduct/@Html.DisplayFor(modelItem => item.HINHANH)" alt="img here" class="card-img-top" style="width: 100%;">
+                    <div class="card-body">
+                        <h4 class="card-title">@Html.DisplayFor(modelItem => item.TenSP)</h4>
+                        <p class="card-text"> @Html.DisplayFor(modelItem => item.Mota) </p>
+                        <p class="card-text text-success">Giá :  @item.GIA VNĐ</p>
+                        @*<a href="#" class="stretched-link"></a>*@
+                        <a href="~/Index/DetailProduct?ma=@item.MaSP" class="btn btn-primary "> Details</a>
+                        <a href="google" class="btn btn-primary">
+                            <i class="far fa-heart"></i>
+                        </a>
+                        <a href="@Url.Action("ThemVaoGio", "GioHang", new { MaSP = item.MaSP })" class="btn btn-primary">
+                            <i class="fas fa-plus"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+}
+            </div>
+            <br /> 
+            <div class="row">
+                <div class="col-md-6 col-lg-6 col-xs-6 col-sm-6">
+                    @using (Html.BeginForm( "SearchItem", "Index", FormMethod.Get))
+                    {
+                        <p>
+                            Kích thước trang: @Html.DropDownList("size", (List<SelectListItem>)ViewBag.size, new { @onchange = "this.form.submit();" })
+                        </p>
+
+                        @Html.Hidden("page", (object)ViewBag.page)
+                        @Html.Hidden("sortProperty", (object)ViewBag.sortProperty)
+                        @Html.Hidden("sortOrder", (object)ViewBag.sortOrder)
+                        @Html.Hidden("searchItem", (object)ViewBag.searchValue)
+                    }
+                </div>
+                <div class="col-md-6 col-lg-6 col-xs-6 col-sm-6 text-right">
+                    Trang: @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+                </div>
+            </div>
+
+            @Html.PagedListPager(Model, page => Url.Action("SearchItem", "Index", new { page }))
+            <!-- Kết thúc -->
+        </div>
+        <!-- Prodcut holder card end -->
+    </div>
+</div>
+

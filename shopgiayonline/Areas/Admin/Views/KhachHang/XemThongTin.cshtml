@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewBag.Title = "XemThongTin";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@using shopgiayonline.Framework;
+@model List<KHACHHANG>
+
+<!-- DataTables Example -->
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fas fa-table"></i> Thông tin của đơn hàng
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" cellspacing="0">
+                <thead>
+                    <tr>
+                        <td>Mã Khách Hàng</td>
+                        <td>Tên Khách Hàng</td>
+                        <td>Email Khách Hàng</td>
+                        <td>Mật Khẩu Khách Hàng</td>
+                        <td>Địa Chỉ</td>
+                        <td>Số Điện Thoại Khách Hàng</td>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <td>Mã Khách Hàng</td>
+                        <td>Tên Khách Hàng</td>
+                        <td>Email Khách Hàng</td>
+                        <td>Mật Khẩu Khách Hàng</td>
+                        <td>Địa Chỉ</td>
+                        <td>Số Điện Thoại Khách Hàng</td>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                    <tr class="text-center">
+                        <td>@item.MaKH</td>
+                        <td>@item.TenKH</td>
+                        <td>@item.EmailKH</td>
+                        <td>@item.MatKhauKH</td>
+                        <td>@item.DiaChiKH</td>
+                        <td>@item.SDTKH</td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+</div>
+
+
+

@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="QLShoesModelStoreContainer" CdmEntityContainer="QLShoesEntities">
+    <EntitySetMapping Name="CTHDs">
+      <EntityTypeMapping TypeName="QLShoesModel.CTHD">
+        <MappingFragment StoreEntitySet="CTHD">
+          <ScalarProperty Name="MaDH" ColumnName="MaDH" />
+          <ScalarProperty Name="MaSP" ColumnName="MaSP" />
+          <ScalarProperty Name="Soluong" ColumnName="Soluong" />
+          <ScalarProperty Name="Gia" ColumnName="Gia" />
+          <ScalarProperty Name="TongTien" ColumnName="TongTien" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DONHANGs">
+      <EntityTypeMapping TypeName="QLShoesModel.DONHANG">
+        <MappingFragment StoreEntitySet="DONHANG">
+          <ScalarProperty Name="MaDH" ColumnName="MaDH" />
+          <ScalarProperty Name="MaKH" ColumnName="MaKH" />
+          <ScalarProperty Name="NGAYDH" ColumnName="NGAYDH" />
+          <ScalarProperty Name="AdID" ColumnName="AdID" />
+          <ScalarProperty Name="TongTien" ColumnName="TongTien" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KHACHHANGs">
+      <EntityTypeMapping TypeName="QLShoesModel.KHACHHANG">
+        <MappingFragment StoreEntitySet="KHACHHANG">
+          <ScalarProperty Name="MaKH" ColumnName="MaKH" />
+          <ScalarProperty Name="TenKH" ColumnName="TenKH" />
+          <ScalarProperty Name="EmailKH" ColumnName="EmailKH" />
+          <ScalarProperty Name="MatKhauKH" ColumnName="MatKhauKH" />
+          <ScalarProperty Name="DiaChiKH" ColumnName="DiaChiKH" />
+          <ScalarProperty Name="SDTKH" ColumnName="SDTKH" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LOAIs">
+      <EntityTypeMapping TypeName="QLShoesModel.LOAI">
+        <MappingFragment StoreEntitySet="LOAI">
+          <ScalarProperty Name="MaSP" ColumnName="MaSP" />
+          <ScalarProperty Name="MaLoai" ColumnName="MaLoai" />
+          <ScalarProperty Name="TenLoai" ColumnName="TenLoai" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="QUANTRIs">
+      <EntityTypeMapping TypeName="QLShoesModel.QUANTRI">
+        <MappingFragment StoreEntitySet="QUANTRI">
+          <ScalarProperty Name="AdID" ColumnName="AdID" />
+          <ScalarProperty Name="TenAdmin" ColumnName="TenAdmin" />
+          <ScalarProperty Name="EmailAdmin" ColumnName="EmailAdmin" />
+          <ScalarProperty Name="UserAdmin" ColumnName="UserAdmin" />
+          <ScalarProperty Name="MatKhauAdmin" ColumnName="MatKhauAdmin" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SANPHAMs">
+      <EntityTypeMapping TypeName="QLShoesModel.SANPHAM">
+        <MappingFragment StoreEntitySet="SANPHAM">
+          <ScalarProperty Name="MaSP" ColumnName="MaSP" />
+          <ScalarProperty Name="TenSP" ColumnName="TenSP" />
+          <ScalarProperty Name="ChatLieu" ColumnName="ChatLieu" />
+          <ScalarProperty Name="TRANGTHAI" ColumnName="TRANGTHAI" />
+          <ScalarProperty Name="Mota" ColumnName="Mota" />
+          <ScalarProperty Name="Motachitiet" ColumnName="Motachitiet" />
+          <ScalarProperty Name="DacDiem" ColumnName="DacDiem" />
+          <ScalarProperty Name="GIA" ColumnName="GIA" />
+          <ScalarProperty Name="HINHANH" ColumnName="HINHANH" />
+          <ScalarProperty Name="HINHTONGHOP" ColumnName="HINHTONGHOP" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_Account_Login" FunctionName="QLShoesModel.Store.sp_Account_Login" />
+    <FunctionImportMapping FunctionImportName="sp_ChiTietDonHang" FunctionName="QLShoesModel.Store.sp_ChiTietDonHang">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="QLShoesModel.sp_ChiTietDonHang_Result">
+          <ScalarProperty Name="MaDH" ColumnName="MaDH" />
+          <ScalarProperty Name="MaKH" ColumnName="MaKH" />
+          <ScalarProperty Name="TenKH" ColumnName="TenKH" />
+          <ScalarProperty Name="SDTKH" ColumnName="SDTKH" />
+          <ScalarProperty Name="TenSP" ColumnName="TenSP" />
+          <ScalarProperty Name="Soluong" ColumnName="Soluong" />
+          <ScalarProperty Name="Tổng_tiền" ColumnName="Tổng tiền" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

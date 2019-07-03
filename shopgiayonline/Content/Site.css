@@ -1,0 +1,268 @@
+﻿BODY {
+    font-family: Cambria, Georgia, "Times New Roman";
+    margin: 0;
+}
+
+DIV#header DIV.title, DIV.item H3, DIV.item H4, DIV.pager A {
+    font: bold 1em "Arial Narrow", "Franklin Gothic Medium", Arial;
+}
+
+DIV#header {
+    background-color: #444;
+    border-bottom: 2px solid #111;
+    color: White;
+}
+
+    DIV#header DIV.title {
+        font-size: 2em;
+        padding: .6em;
+    }
+
+DIV#content {
+    border-left: 2px solid gray;
+    margin-left: 9em;
+    padding: 1em;
+}
+
+DIV#categories {
+    float: left;
+    width: 8em;
+    padding: .3em;
+}
+
+DIV.item {
+    border-top: 1px dotted gray;
+    padding-top: .7em;
+    margin-bottom: .7em;
+}
+
+    DIV.item:first-child {
+        border-top: none;
+        padding-top: 0;
+    }
+
+    DIV.item H3 {
+        font-size: 1.3em;
+        margin: 0 0 .25em 0;
+    }
+
+    DIV.item H4 {
+        font-size: 1.1em;
+        margin: .4em 0 0 0;
+    }
+
+DIV.pager {
+    text-align: right;
+    border-top: 2px solid silver;
+    padding: .5em 0 0 0;
+    margin-top: 1em;
+}
+
+    DIV.pager A {
+        font-size: 1.1em;
+        color: #666;
+        text-decoration: none;
+        padding: 0 .4em 0 .4em;
+    }
+
+        DIV.pager A:hover {
+            background-color: Silver;
+        }
+
+        DIV.pager A.selected {
+            background-color: #353535;
+            color: White;
+        }
+.nondeco {
+    text-decoration-line: none;
+}
+/*Selected box effect*/
+.rotate .fa {
+    transition: .3s transform ease-in-out;
+}
+
+.rotate .collapsed .fa {
+    transform: rotate(180deg);
+}
+/* --- */
+/*Checkbox effect*/
+@keyframes check {
+    0% {
+        height: 0;
+        width: 0;
+    }
+
+    25% {
+        height: 0;
+        width: 10px;
+    }
+
+    50% {
+        height: 20px;
+        width: 10px;
+    }
+}
+
+.checkbox {
+    background-color: #fff;
+    display: inline-block;
+    height: 28px;
+    margin: 0 .25em;
+    width: 28px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    float: right
+}
+
+    .checkbox span {
+        display: block;
+        height: 28px;
+        position: relative;
+        width: 28px;
+        padding: 0
+    }
+
+        .checkbox span:after {
+            -moz-transform: scaleX(-1) rotate(135deg);
+            -ms-transform: scaleX(-1) rotate(135deg);
+            -webkit-transform: scaleX(-1) rotate(135deg);
+            transform: scaleX(-1) rotate(135deg);
+            -moz-transform-origin: left top;
+            -ms-transform-origin: left top;
+            -webkit-transform-origin: left top;
+            transform-origin: left top;
+            border-right: 4px solid #fff;
+            border-top: 4px solid #fff;
+            content: '';
+            display: block;
+            height: 20px;
+            left: 3px;
+            position: absolute;
+            top: 15px;
+            width: 10px
+        }
+
+        .checkbox span:hover:after {
+            border-color: #999
+        }
+
+    .checkbox input {
+        display: none
+    }
+
+        .checkbox input:checked + span:after {
+            -webkit-animation: check .8s;
+            -moz-animation: check .8s;
+            -o-animation: check .8s;
+            animation: check .8s;
+            border-color: #555
+        }
+
+        .checkbox input:checked + .default:after {
+            border-color: #444
+        }
+
+        .checkbox input:checked + .primary:after {
+            border-color: #2196F3
+        }
+
+        .checkbox input:checked + .success:after {
+            border-color: #8bc34a
+        }
+
+        .checkbox input:checked + .info:after {
+            border-color: #3de0f5
+        }
+
+        .checkbox input:checked + .warning:after {
+            border-color: #FFC107
+        }
+
+        .checkbox input:checked + .danger:after {
+            border-color: #f44336
+        }
+/*---*/
+/*Card hover effects*/
+.card {
+    border-radius: 8px;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    top: 0;
+    transition: all 0.25s;
+}
+
+div .card .a:hover {
+    top: -15px;
+    margin: 0 50px;
+    box-shadow: 0 12px 16px rgba(0, 0, 0, 0.2);
+}
+
+div.aa-cartbox {
+    float: right;
+    text-align: center;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+    div.aa-cartbox a.aa-cart-link {
+        font-size: 22px;
+        position: relative;
+        width: 120px;
+        height: auto;
+        display: block;
+    }
+
+        div.aa-cartbox a.aa-cart-link  {
+            z-index: 99;
+            position: relative;
+        }
+
+ div.aa-cartbox a.aa-cart-link  {
+    color: #555;
+    display: block;
+    font-size: 14px;
+}
+
+div.aa-cartbox a.aa-cart-link span.aa-cart-notify {
+    background-color: #fff;
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 2px 9px;
+    position: absolute;
+    right: 39%;
+    top: -15px;
+    z-index: 10;
+    -webkit-animation-name: cartbox-transition;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+    animation-name: cartbox-transition;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+  div.aa-cartbox a.aa-cart-link span.aa-cart-notify:after,  div.aa-cartbox a.aa-cart-link span.aa-cart-notify:before {
+        top: 100%;
+        left: 50%;
+        border: solid transparent;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+    }
+
+    div.aa-cartbox a.aa-cart-link span.aa-cart-notify:after {
+        border-color: rgba(255, 102, 102, 0);
+        border-width: 5px;
+        margin-left: -5px;
+    }
+
+ div.aa-cartbox a.aa-cart-link span.aa-cart-notify:before {
+    border-color: rgba(0, 0, 0, 0);
+    border-width: 6px;
+    margin-left: -6px;
+}
+

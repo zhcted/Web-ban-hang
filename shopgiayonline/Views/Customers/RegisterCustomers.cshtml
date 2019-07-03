@@ -1,0 +1,141 @@
+﻿
+@{
+    ViewBag.Title = "RegisterCustomers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/StyleSheet1.scss" rel="stylesheet" />
+<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
+<div class="container">
+    <div class="checkmark-circle">
+        <div class="background"></div>
+        <div class="checkmark draw"></div>
+    </div>
+    <div class="card card-login mx-auto mt-5">
+        <h1 class="card-header">Đăng ký tài khoản khách hàng</h1> <br />
+        <div class="card-body">
+
+            <form action="~/Customers/RegisterCustomers" id="formValidation" method="post">
+                <div class="form-group">
+                    <div class="form-label-group">
+                        <label for="inputTenKH">Tên khách hàng</label>
+                        <input type="text" id="inputTenKH" name="TenKH" class="form-control" placeholder="Tên khách hàng....." />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-label-group">
+                        <label for="inputEmail">Email</label>
+                        <input type="email" name="EmailKH" id="inputEmailKH" class="form-control" placeholder="Email khách hàng....." />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-label-group">
+                        <label for="inputMatKhauKH">Mật khẩu</label>
+                        <input type="password" name="MatKhauKH" id="inputMatKhauKH" class="form-control" placeholder="Mật khẩu khách hàng....." />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-label-group">
+                        <label for="inputMatKhau">Nhập lại mật khẩu</label>
+                        <input type="password" name="reMatKhauKH" id="reinputMatKhau" class="form-control" placeholder="Mật khẩu khách hàng....." />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-label-group">
+                        <label for="inputDiaChiKH">Địa chỉ khách hàng</label>
+                        <input type="text" name="DiaChiKH" id="inputDiaChiKH" class="form-control" placeholder="Địa chỉ khách hàng.....">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-label-group">
+                        <label for="inputSDTKH">Số điện thoại khách hàng</label>
+                        <input type="text" name="SDTKH" id="inputSDTKH" class="form-control" placeholder="Điện thoại khách hàng.....">
+                    </div>
+                </div>
+
+
+                <button type="submit" name="submit" class="btn btn-info btn-lg" data-toggle="modal"
+                        data-target="#myModal">
+                    Đăng ký
+                </button>
+                <!-- Modal -->
+                @*@{ if (ViewBag.kq != null)
+                    {
+                    <h1>@ViewBag.email</h1>
+                    }
+                    else
+                    {
+                    <div id="myModal" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                             Modal content
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Đăng ký thành viên mới</h4>
+                                </div>
+
+
+                                <div class="modal-body">
+                                    <p>Đăng ký thành công</p>
+                                </div>
+
+
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        }
+                    }*@
+
+            </form>
+            <div class="text-center">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function() {
+        $("#formValidation").validate({
+            
+            rules: {
+                TenKH: "required",
+                EmailKH: {
+                    required: true,
+                    email: true
+                },
+                MatKhauKH: {
+                    required: true
+
+                },
+                reMatKhauKH: {
+                    required: true,
+                    equalTo: "#inputMatKhauKH"
+                },
+                DiaChiKH: {
+                    required: true
+                },
+                SDTKH: {
+                    required: true
+                }
+            },
+            messages: {
+                TenKH: "Vui lòng nhập tên khách hàng",
+                EmailKH: {
+                    required: "Vui lòng nhập Email",
+                    email: "Email không đúng định dạng!"
+                },
+                MatKhauKH: "Vui lòng nhập mật khẩu",
+                reMatKhauKH: {
+                    required: "Vui lòng nhập lại mật khẩu",
+                    equalTo: "Mật khẩu không trùng khớp"
+                },
+                DiaChiKH: "Không được để trống!",
+                SDTKH: "Không được để trống!"
+            }
+        });
+    });
+</script>

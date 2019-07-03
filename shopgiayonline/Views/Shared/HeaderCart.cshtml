@@ -1,0 +1,101 @@
+﻿@model List<shopgiayonline.AddToCart.CartItem>
+<style>
+    
+    .cartitem {
+        list-style: none;
+        position: relative;
+        display: block;
+        float: left;
+        width: 100%;
+        
+    }
+
+    .ul-cart {
+        display: none;
+        position:absolute;
+        
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    li:hover .ul-cart {
+        display: block;
+        margin-top: 5px;
+        width: 300px;
+        z-index: 9999;
+        right: 0;
+        border: 1px double red;
+    }
+
+    div.hovercart {
+        background-color: khaki;
+    }
+
+    .aa-cartbox-summary {
+        position: absolute;
+        right: 0;
+    }
+    
+</style>
+<div class="cart text-info">
+    <p>
+        Welcome to your Online Store! <span>Cart:</span>
+        <div id="dd" class="wrapper-dropdown-2">
+            @Model.Count item(s) - @Model.Sum(x => x.ThanhTien)
+            //Tạo ViewBag để thêm tên sản phẩm
+            <ul class="dropdown">
+                <li>You have no item in your Shopping Cart</li>
+            </ul>
+        </div>
+    </p>
+</div>
+<div class="aa-cartbox">
+    <ul>
+        <li class="aa-cartbox-summary">
+            @if (Model.Sum(x => x.Soluong) == 0)
+        {
+        <a class="btn btn-success btn-sm ml-auto aa-cart-link" href="@Url.Action("index", "GioHang")">
+            <span class="glyphicon glyphicon-shopping-cart"></span>
+            <i class="fas fa-shopping-basket fa-2x"></i>
+            <span class="aa-cart-notify">@Model.Sum(x => x.Soluong)</span>
+        </a>
+            }
+            else
+            {
+        <a class="btn btn-success btn-sm ml-auto aa-cart-link" href="@Url.Action("index", "GioHang")">
+            <span class="glyphicon glyphicon-shopping-cart"></span>
+            <i class="fas fa-shopping-basket fa-2x"></i>
+            <span class="aa-cart-notify">@Model.Sum(x => x.Soluong)</span>
+        </a>
+        <ul class="ul-cart">
+            <li class="cartitem">
+                <div class="hovercart">
+                    @foreach (var item in Model)
+            {
+                <div class="row">
+                    <div class="col-sm-4">
+                        <img src="~/Images/ImgProduct/@Html.DisplayFor(modelItem => item.HINHANH)" alt="img here" class="img-thumbnail">
+                    </div>
+                    <div class="col-sm-8">
+                        @item.TenSP
+                        <br />
+                        @item.GIA.ToString("#,##0").Replace(',', '.') VNĐ
+                    </div>
+                </div>
+                <hr />
+                <div>
+
+                </div>
+}
+                    ToTal : @Model.Sum(x => x.ThanhTien)
+                </div>
+            </li>
+        </ul>
+}
+
+        </li>
+    </ul>
+    
+</div>

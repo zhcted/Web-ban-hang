@@ -1,0 +1,463 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="QLShoesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CTHD">
+          <Key>
+            <PropertyRef Name="MaDH" />
+            <PropertyRef Name="MaSP" />
+          </Key>
+          <Property Name="MaDH" Type="int" Nullable="false" />
+          <Property Name="MaSP" Type="int" Nullable="false" />
+          <Property Name="Soluong" Type="int" />
+          <Property Name="Gia" Type="int" />
+          <Property Name="TongTien" Type="int" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="DONHANG">
+          <Key>
+            <PropertyRef Name="MaDH" />
+          </Key>
+          <Property Name="MaDH" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaKH" Type="int" />
+          <Property Name="NGAYDH" Type="datetime" />
+          <Property Name="AdID" Type="int" />
+          <Property Name="TongTien" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="KHACHHANG">
+          <Key>
+            <PropertyRef Name="MaKH" />
+          </Key>
+          <Property Name="MaKH" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenKH" Type="nvarchar" MaxLength="100" />
+          <Property Name="EmailKH" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MatKhauKH" Type="varchar" MaxLength="50" />
+          <Property Name="DiaChiKH" Type="nvarchar" MaxLength="100" />
+          <Property Name="SDTKH" Type="int" />
+        </EntityType>
+        <EntityType Name="LOAI">
+          <Key>
+            <PropertyRef Name="MaSP" />
+            <PropertyRef Name="MaLoai" />
+          </Key>
+          <Property Name="MaSP" Type="int" Nullable="false" />
+          <Property Name="MaLoai" Type="int" Nullable="false" />
+          <Property Name="TenLoai" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="QUANTRI">
+          <Key>
+            <PropertyRef Name="AdID" />
+          </Key>
+          <Property Name="AdID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenAdmin" Type="nvarchar" MaxLength="50" />
+          <Property Name="EmailAdmin" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserAdmin" Type="varchar" MaxLength="50" />
+          <Property Name="MatKhauAdmin" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="SANPHAM">
+          <Key>
+            <PropertyRef Name="MaSP" />
+          </Key>
+          <Property Name="MaSP" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenSP" Type="nvarchar" MaxLength="100" />
+          <Property Name="ChatLieu" Type="varchar" MaxLength="20" />
+          <Property Name="TRANGTHAI" Type="nvarchar" MaxLength="50" />
+          <Property Name="Mota" Type="nvarchar" MaxLength="100" />
+          <Property Name="Motachitiet" Type="nvarchar(max)" />
+          <Property Name="DacDiem" Type="nvarchar" MaxLength="50" />
+          <Property Name="GIA" Type="int" />
+          <Property Name="HINHANH" Type="varchar" MaxLength="100" />
+          <Property Name="HINHTONGHOP" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <Association Name="FK_CTHD_DONHANG">
+          <End Role="DONHANG" Type="Self.DONHANG" Multiplicity="1" />
+          <End Role="CTHD" Type="Self.CTHD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DONHANG">
+              <PropertyRef Name="MaDH" />
+            </Principal>
+            <Dependent Role="CTHD">
+              <PropertyRef Name="MaDH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KHACHHANG_DONHANG">
+          <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="0..1" />
+          <End Role="DONHANG" Type="Self.DONHANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KHACHHANG">
+              <PropertyRef Name="MaKH" />
+            </Principal>
+            <Dependent Role="DONHANG">
+              <PropertyRef Name="MaKH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QUANTRI_DONHANG">
+          <End Role="QUANTRI" Type="Self.QUANTRI" Multiplicity="0..1" />
+          <End Role="DONHANG" Type="Self.DONHANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QUANTRI">
+              <PropertyRef Name="AdID" />
+            </Principal>
+            <Dependent Role="DONHANG">
+              <PropertyRef Name="AdID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SANPHAM_CTHD">
+          <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="1" />
+          <End Role="CTHD" Type="Self.CTHD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SANPHAM">
+              <PropertyRef Name="MaSP" />
+            </Principal>
+            <Dependent Role="CTHD">
+              <PropertyRef Name="MaSP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SANPHAM_LOAI">
+          <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="1" />
+          <End Role="LOAI" Type="Self.LOAI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SANPHAM">
+              <PropertyRef Name="MaSP" />
+            </Principal>
+            <Dependent Role="LOAI">
+              <PropertyRef Name="MaSP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="sp_Account_Login" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserAdmin" Type="varchar" Mode="In" />
+          <Parameter Name="MatKhauAdmin" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_ChiTietDonHang" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="QLShoesModelStoreContainer">
+          <EntitySet Name="CTHD" EntityType="Self.CTHD" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DONHANG" EntityType="Self.DONHANG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KHACHHANG" EntityType="Self.KHACHHANG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LOAI" EntityType="Self.LOAI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QUANTRI" EntityType="Self.QUANTRI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SANPHAM" EntityType="Self.SANPHAM" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CTHD_DONHANG" Association="Self.FK_CTHD_DONHANG">
+            <End Role="DONHANG" EntitySet="DONHANG" />
+            <End Role="CTHD" EntitySet="CTHD" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KHACHHANG_DONHANG" Association="Self.FK_KHACHHANG_DONHANG">
+            <End Role="KHACHHANG" EntitySet="KHACHHANG" />
+            <End Role="DONHANG" EntitySet="DONHANG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QUANTRI_DONHANG" Association="Self.FK_QUANTRI_DONHANG">
+            <End Role="QUANTRI" EntitySet="QUANTRI" />
+            <End Role="DONHANG" EntitySet="DONHANG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SANPHAM_CTHD" Association="Self.FK_SANPHAM_CTHD">
+            <End Role="SANPHAM" EntitySet="SANPHAM" />
+            <End Role="CTHD" EntitySet="CTHD" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SANPHAM_LOAI" Association="Self.FK_SANPHAM_LOAI">
+            <End Role="SANPHAM" EntitySet="SANPHAM" />
+            <End Role="LOAI" EntitySet="LOAI" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QLShoesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CTHD">
+          <Key>
+            <PropertyRef Name="MaDH" />
+            <PropertyRef Name="MaSP" />
+          </Key>
+          <Property Name="MaDH" Type="Int32" Nullable="false" />
+          <Property Name="MaSP" Type="Int32" Nullable="false" />
+          <Property Name="Soluong" Type="Int32" />
+          <Property Name="Gia" Type="Int32" />
+          <Property Name="TongTien" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="DONHANG" Relationship="Self.FK_CTHD_DONHANG" FromRole="CTHD" ToRole="DONHANG" />
+          <NavigationProperty Name="SANPHAM" Relationship="Self.FK_SANPHAM_CTHD" FromRole="CTHD" ToRole="SANPHAM" />
+        </EntityType>
+        <EntityType Name="DONHANG">
+          <Key>
+            <PropertyRef Name="MaDH" />
+          </Key>
+          <Property Name="MaDH" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaKH" Type="Int32" />
+          <Property Name="NGAYDH" Type="DateTime" Precision="3" />
+          <Property Name="AdID" Type="Int32" />
+          <Property Name="TongTien" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CTHDs" Relationship="Self.FK_CTHD_DONHANG" FromRole="DONHANG" ToRole="CTHD" />
+          <NavigationProperty Name="KHACHHANG" Relationship="Self.FK_KHACHHANG_DONHANG" FromRole="DONHANG" ToRole="KHACHHANG" />
+          <NavigationProperty Name="QUANTRI" Relationship="Self.FK_QUANTRI_DONHANG" FromRole="DONHANG" ToRole="QUANTRI" />
+        </EntityType>
+        <EntityType Name="KHACHHANG">
+          <Key>
+            <PropertyRef Name="MaKH" />
+          </Key>
+          <Property Name="MaKH" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenKH" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="EmailKH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MatKhauKH" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DiaChiKH" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SDTKH" Type="Int32" />
+          <NavigationProperty Name="DONHANGs" Relationship="Self.FK_KHACHHANG_DONHANG" FromRole="KHACHHANG" ToRole="DONHANG" />
+        </EntityType>
+        <EntityType Name="LOAI">
+          <Key>
+            <PropertyRef Name="MaSP" />
+            <PropertyRef Name="MaLoai" />
+          </Key>
+          <Property Name="MaSP" Type="Int32" Nullable="false" />
+          <Property Name="MaLoai" Type="Int32" Nullable="false" />
+          <Property Name="TenLoai" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SANPHAM" Relationship="Self.FK_SANPHAM_LOAI" FromRole="LOAI" ToRole="SANPHAM" />
+        </EntityType>
+        <EntityType Name="QUANTRI">
+          <Key>
+            <PropertyRef Name="AdID" />
+          </Key>
+          <Property Name="AdID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenAdmin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EmailAdmin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserAdmin" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MatKhauAdmin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DONHANGs" Relationship="Self.FK_QUANTRI_DONHANG" FromRole="QUANTRI" ToRole="DONHANG" />
+        </EntityType>
+        <EntityType Name="SANPHAM">
+          <Key>
+            <PropertyRef Name="MaSP" />
+          </Key>
+          <Property Name="MaSP" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenSP" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ChatLieu" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="TRANGTHAI" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Mota" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Motachitiet" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DacDiem" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GIA" Type="Int32" />
+          <Property Name="HINHANH" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="HINHTONGHOP" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CTHDs" Relationship="Self.FK_SANPHAM_CTHD" FromRole="SANPHAM" ToRole="CTHD" />
+          <NavigationProperty Name="LOAIs" Relationship="Self.FK_SANPHAM_LOAI" FromRole="SANPHAM" ToRole="LOAI" />
+        </EntityType>
+        <Association Name="FK_CTHD_DONHANG">
+          <End Role="DONHANG" Type="Self.DONHANG" Multiplicity="1" />
+          <End Role="CTHD" Type="Self.CTHD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DONHANG">
+              <PropertyRef Name="MaDH" />
+            </Principal>
+            <Dependent Role="CTHD">
+              <PropertyRef Name="MaDH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SANPHAM_CTHD">
+          <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="1" />
+          <End Role="CTHD" Type="Self.CTHD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SANPHAM">
+              <PropertyRef Name="MaSP" />
+            </Principal>
+            <Dependent Role="CTHD">
+              <PropertyRef Name="MaSP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KHACHHANG_DONHANG">
+          <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="0..1" />
+          <End Role="DONHANG" Type="Self.DONHANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KHACHHANG">
+              <PropertyRef Name="MaKH" />
+            </Principal>
+            <Dependent Role="DONHANG">
+              <PropertyRef Name="MaKH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QUANTRI_DONHANG">
+          <End Role="QUANTRI" Type="Self.QUANTRI" Multiplicity="0..1" />
+          <End Role="DONHANG" Type="Self.DONHANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QUANTRI">
+              <PropertyRef Name="AdID" />
+            </Principal>
+            <Dependent Role="DONHANG">
+              <PropertyRef Name="AdID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SANPHAM_LOAI">
+          <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="1" />
+          <End Role="LOAI" Type="Self.LOAI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SANPHAM">
+              <PropertyRef Name="MaSP" />
+            </Principal>
+            <Dependent Role="LOAI">
+              <PropertyRef Name="MaSP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QLShoesEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CTHDs" EntityType="Self.CTHD" />
+          <EntitySet Name="DONHANGs" EntityType="Self.DONHANG" />
+          <EntitySet Name="KHACHHANGs" EntityType="Self.KHACHHANG" />
+          <EntitySet Name="LOAIs" EntityType="Self.LOAI" />
+          <EntitySet Name="QUANTRIs" EntityType="Self.QUANTRI" />
+          <EntitySet Name="SANPHAMs" EntityType="Self.SANPHAM" />
+          <AssociationSet Name="FK_CTHD_DONHANG" Association="Self.FK_CTHD_DONHANG">
+            <End Role="DONHANG" EntitySet="DONHANGs" />
+            <End Role="CTHD" EntitySet="CTHDs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SANPHAM_CTHD" Association="Self.FK_SANPHAM_CTHD">
+            <End Role="SANPHAM" EntitySet="SANPHAMs" />
+            <End Role="CTHD" EntitySet="CTHDs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KHACHHANG_DONHANG" Association="Self.FK_KHACHHANG_DONHANG">
+            <End Role="KHACHHANG" EntitySet="KHACHHANGs" />
+            <End Role="DONHANG" EntitySet="DONHANGs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QUANTRI_DONHANG" Association="Self.FK_QUANTRI_DONHANG">
+            <End Role="QUANTRI" EntitySet="QUANTRIs" />
+            <End Role="DONHANG" EntitySet="DONHANGs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SANPHAM_LOAI" Association="Self.FK_SANPHAM_LOAI">
+            <End Role="SANPHAM" EntitySet="SANPHAMs" />
+            <End Role="LOAI" EntitySet="LOAIs" />
+          </AssociationSet>
+          <FunctionImport Name="sp_Account_Login" ReturnType="Collection(Boolean)">
+            <Parameter Name="UserAdmin" Mode="In" Type="String" />
+            <Parameter Name="MatKhauAdmin" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ChiTietDonHang" ReturnType="Collection(QLShoesModel.sp_ChiTietDonHang_Result)" />
+        </EntityContainer>
+        <ComplexType Name="sp_ChiTietDonHang_Result">
+          <Property Type="Int32" Name="MaDH" Nullable="false" />
+          <Property Type="Int32" Name="MaKH" Nullable="true" />
+          <Property Type="String" Name="TenKH" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="SDTKH" Nullable="true" />
+          <Property Type="String" Name="TenSP" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="Soluong" Nullable="true" />
+          <Property Type="String" Name="Tổng_tiền" Nullable="true" MaxLength="50" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="QLShoesModelStoreContainer" CdmEntityContainer="QLShoesEntities">
+          <EntitySetMapping Name="CTHDs">
+            <EntityTypeMapping TypeName="QLShoesModel.CTHD">
+              <MappingFragment StoreEntitySet="CTHD">
+                <ScalarProperty Name="MaDH" ColumnName="MaDH" />
+                <ScalarProperty Name="MaSP" ColumnName="MaSP" />
+                <ScalarProperty Name="Soluong" ColumnName="Soluong" />
+                <ScalarProperty Name="Gia" ColumnName="Gia" />
+                <ScalarProperty Name="TongTien" ColumnName="TongTien" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DONHANGs">
+            <EntityTypeMapping TypeName="QLShoesModel.DONHANG">
+              <MappingFragment StoreEntitySet="DONHANG">
+                <ScalarProperty Name="MaDH" ColumnName="MaDH" />
+                <ScalarProperty Name="MaKH" ColumnName="MaKH" />
+                <ScalarProperty Name="NGAYDH" ColumnName="NGAYDH" />
+                <ScalarProperty Name="AdID" ColumnName="AdID" />
+                <ScalarProperty Name="TongTien" ColumnName="TongTien" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KHACHHANGs">
+            <EntityTypeMapping TypeName="QLShoesModel.KHACHHANG">
+              <MappingFragment StoreEntitySet="KHACHHANG">
+                <ScalarProperty Name="MaKH" ColumnName="MaKH" />
+                <ScalarProperty Name="TenKH" ColumnName="TenKH" />
+                <ScalarProperty Name="EmailKH" ColumnName="EmailKH" />
+                <ScalarProperty Name="MatKhauKH" ColumnName="MatKhauKH" />
+                <ScalarProperty Name="DiaChiKH" ColumnName="DiaChiKH" />
+                <ScalarProperty Name="SDTKH" ColumnName="SDTKH" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LOAIs">
+            <EntityTypeMapping TypeName="QLShoesModel.LOAI">
+              <MappingFragment StoreEntitySet="LOAI">
+                <ScalarProperty Name="MaSP" ColumnName="MaSP" />
+                <ScalarProperty Name="MaLoai" ColumnName="MaLoai" />
+                <ScalarProperty Name="TenLoai" ColumnName="TenLoai" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QUANTRIs">
+            <EntityTypeMapping TypeName="QLShoesModel.QUANTRI">
+              <MappingFragment StoreEntitySet="QUANTRI">
+                <ScalarProperty Name="AdID" ColumnName="AdID" />
+                <ScalarProperty Name="TenAdmin" ColumnName="TenAdmin" />
+                <ScalarProperty Name="EmailAdmin" ColumnName="EmailAdmin" />
+                <ScalarProperty Name="UserAdmin" ColumnName="UserAdmin" />
+                <ScalarProperty Name="MatKhauAdmin" ColumnName="MatKhauAdmin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SANPHAMs">
+            <EntityTypeMapping TypeName="QLShoesModel.SANPHAM">
+              <MappingFragment StoreEntitySet="SANPHAM">
+                <ScalarProperty Name="MaSP" ColumnName="MaSP" />
+                <ScalarProperty Name="TenSP" ColumnName="TenSP" />
+                <ScalarProperty Name="ChatLieu" ColumnName="ChatLieu" />
+                <ScalarProperty Name="TRANGTHAI" ColumnName="TRANGTHAI" />
+                <ScalarProperty Name="Mota" ColumnName="Mota" />
+                <ScalarProperty Name="Motachitiet" ColumnName="Motachitiet" />
+                <ScalarProperty Name="DacDiem" ColumnName="DacDiem" />
+                <ScalarProperty Name="GIA" ColumnName="GIA" />
+                <ScalarProperty Name="HINHANH" ColumnName="HINHANH" />
+                <ScalarProperty Name="HINHTONGHOP" ColumnName="HINHTONGHOP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_Account_Login" FunctionName="QLShoesModel.Store.sp_Account_Login" />
+          <FunctionImportMapping FunctionImportName="sp_ChiTietDonHang" FunctionName="QLShoesModel.Store.sp_ChiTietDonHang">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QLShoesModel.sp_ChiTietDonHang_Result">
+                <ScalarProperty Name="MaDH" ColumnName="MaDH" />
+                <ScalarProperty Name="MaKH" ColumnName="MaKH" />
+                <ScalarProperty Name="TenKH" ColumnName="TenKH" />
+                <ScalarProperty Name="SDTKH" ColumnName="SDTKH" />
+                <ScalarProperty Name="TenSP" ColumnName="TenSP" />
+                <ScalarProperty Name="Soluong" ColumnName="Soluong" />
+                <ScalarProperty Name="Tổng_tiền" ColumnName="Tổng tiền" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,153 @@
+﻿@model shopgiayonline.Framework.v_CTHD
+
+@{
+    ViewBag.Title = "XemChiTiet";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@*<h2>XemChiTiet</h2>
+
+<div>
+    <h4>v_CTHD</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MaKH)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaKH)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TenKH)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenKH)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SDTKH)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SDTKH)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmailKH)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmailKH)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DiaChiKH)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DiaChiKH)
+        </dd>
+
+        @foreach (var item in ViewBag.cthd)
+        {
+            @item.MaKH
+            <br />
+            @item.TenKH
+            <br />
+            @item.EmailKH
+            <br />
+            @item.DiaChiKH
+            <br />
+            @item.Soluong
+            <br />
+            @item.Gia
+            <br />
+            @item.TenSP
+        }
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TongTien)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TongTien)
+        </dd>
+
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "XemThongTin")
+</p>*@
+
+
+<!-- DataTables Example -->
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fas fa-table"></i> Chi tiết của đơn hàng
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Mã khách hàng</th>
+                        <th>Tên khách hàng</th>
+                        <th>SDT</th>
+                        <th>Email</th>
+                        <th>Địa chỉ</th>
+                        <th>Mã SP</th>
+                        <th>Tên SP</th>
+                        <th>Số lượng</th>
+                        <th>Đơn giá</th>
+                        <th>Tổng</th>
+                        <th>Hủy đơn hàng</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Mã khách hàng</th>
+                        <th>Tên khách hàng</th>
+                        <th>SDT</th>
+                        <th>Email</th>
+                        <th>Địa chỉ</th>
+                        <th>Mã SP</th>
+                        <th>Tên SP</th>
+                        <th>Số lượng</th>
+                        <th>Đơn giá</th>
+                        <th>Tổng</th>
+                        <th>Hủy đơn hàng</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var item in ViewBag.cthd)
+                    {
+                    <tr class="text-center">
+                        <td>@item.MaKH</td>
+                        <td>@item.TenKH</td>
+                        <td>@item.SDTKH</td>
+                        <td>@item.EmailKH</td>
+                        <td>@item.DiaChiKH</td>
+                        <td>@item.MaSP</td>
+                        <td>@item.TenSP</td>
+                        <td>@item.Soluong</td>
+                        <td>@item.Gia</td>
+                        <td>@item.TongTien</td>
+
+                        <td>
+                            @Html.ActionLink("Delete", "XoaChiTiet", new { /* id = Model.PrimaryKey */ }) |
+                            @Html.ActionLink("Back to List", "XemThongTin")
+                        </td>
+
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

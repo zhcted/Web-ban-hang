@@ -1,0 +1,240 @@
+﻿@using shopgiayonline.Framework;
+   @model SANPHAM
+@{
+    ViewBag.Title = "DetailProduct";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div>
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="~/Index/SearchItem"><i class="fas fa-chevron-circle-left"></i>Back</a></li>
+            <li class="breadcrumb-item">Home</li>
+            <li class="breadcrumb-item">Sports</li>
+            <li class="breadcrumb-item">Football</li>
+            <li class="breadcrumb-item active">@Model.TenSP</li>
+        </ul>
+    </div>
+    <div class="row mb-3">
+        <div class="col-sm-7">
+            <div class="container ml-5">
+                <div class="simpleLens-gallery-container" id="test1">
+                    <div class="simpleLens-container">
+                        <div class="simpleLens-big-image-container">
+                            <a class="simpleLens-lens-image" data-lens-image="~/Images/ImgProduct/@Html.DisplayFor(modelItem => Model.HINHANH)">
+                                <img src="~/Images/ImgProduct/@Html.DisplayFor(modelItem => Model.HINHANH)" class="simpleLens-big-image">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="simpleLens-thumbnails-container">
+                        <a href="#" class="simpleLens-thumbnail-wrapper"
+                           data-lens-image="~/Images/ProductDetail/LargeImages/benvado_elisa_bianco.jpg"
+                           data-big-image="~/Images/ProductDetail/MediumImages/benvado_elisa_bianco.jpg">
+                            <img src="~/Images/ProductDetail/ThumbnailImages/benvado_elisa_bianco.jpg">
+                        </a>
+
+                        <a href="#" class="simpleLens-thumbnail-wrapper"
+                           data-lens-image="~/Images/ProductDetail/LargeImages/camper_21926_red.jpg"
+                           data-big-image="~/Images/ProductDetail/MediumImages/camper_21926_red.jpg">
+                            <img src="~/Images/ProductDetail/ThumbnailImages/camper_21926_red.jpg">
+                        </a>
+
+                        <a href="#" class="simpleLens-thumbnail-wrapper"
+                           data-lens-image="~/Images/ProductDetail/LargeImages/flylondon_most_red.jpg"
+                           data-big-image="~/Images/ProductDetail/MediumImages/flylondon_most_red.jpg">
+                            <img src="~/Images/ProductDetail/ThumbnailImages/flylondon_most_red.jpg">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-5">
+            <div class="product-description">
+                <span>Sport Shoes</span>
+                <h1>@Html.DisplayFor(model => model.TenSP)</h1>
+                <p>SUPPORTIVE BOOTS RESERVED FOR PLAYERS WHO DARE TO DISRUPT.</p>
+            </div>
+            <div class="text-success">
+                Price:	@Html.DisplayFor(model => model.GIA) VNĐ
+            </div>
+            <div>
+                Availability: @Html.DisplayFor(model => model.TRANGTHAI)
+            </div>
+            <div>
+                <h4>Size</h4>
+            </div>
+            <div>
+                <a href="#" class="btn btn-light border-dark" role="button">S</a>
+                <a href="#" class="btn btn-light border-dark" role="button">M</a>
+                <a href="#" class="btn btn-light border-dark" role="button">L</a>
+                <a href="#" class="btn btn-light border-dark" role="button">XL</a>
+            </div>
+            <div>
+                <h4>Color</h4>
+            </div>
+            <div>
+                <a href="#" class="btn btn-dark" style="background-color: #FF0000;"></a>
+                <a href="#" class="btn btn-dark" style="background-color: pink;"></a>
+                <a href="#" class="btn btn-dark" style="background-color: yellow;"></a>
+                <a href="#" class="btn btn-dark" style="background-color: black;"></a>
+                <a href="#" class="btn btn-dark" style="background-color: white;"></a>
+            </div>
+            <div class="mt-2 mb-2">
+                <form action="">
+                    <select name="" id="">
+                        <option value="0" selected="selected">1</option>
+                        <option value="1">2</option>
+                        <option value="2">3</option>
+                        <option value="3">4</option>
+                        <option value="4">5</option>
+                    </select>
+                </form>
+                <p>
+                    Category: <a href="#" style="color: #FF0000">Sport shoes</a>
+                </p>
+            </div>
+            <div class="prod-view-bottom">
+                <a href="@Url.Action("ThemVaoGio", "GioHang", new { MaSP = Model.MaSP })" class="btn aa-add-to-cart-btn">
+                    add to cart
+                </a>
+                <a href="#" class="btn aa-add-to-cart-btn">whislist</a>
+
+            </div>
+
+
+
+        </div>
+    </div>
+    <div class="aa-product-details-bottom prod-view-bottom">
+        <ul class="nav nav-tabs justify-content-center" id="myTab">
+            <li class="nav-item"><a href="#description" data-toggle="tab" class="active">Description</a></li>
+
+            <li><a href="#review" data-toggle="tab">Reviews</a></li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div class="tab-pane active" id="description">
+                <h2 class="text-center text-black-50">@Model.Motachitiet</h2>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                <ul>
+                    <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod, culpa!</li>
+                    <li>Lorem ipsum dolor sit amet.</li>
+                    <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
+                    <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor qui eius esse!</li>
+                    <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam, modi!</li>
+                </ul>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum, iusto earum voluptates autem esse molestiae ipsam, atque quam amet similique ducimus aliquid voluptate perferendis, distinctio!</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis ea, voluptas! Aliquam facere quas cumque rerum dolore impedit, dicta ducimus repellat dignissimos, fugiat, minima quaerat necessitatibus? Optio adipisci ab, obcaecati, porro unde accusantium facilis repudiandae.</p>
+            </div>
+            <div class="tab-pane fade " id="review">
+                <div class="aa-product-review-area">
+                    <h4>2 Reviews for T-Shirt</h4>
+                    <ul class="aa-review-nav">
+                        <li>
+                            <div class="media">
+                                <div class="media-left">
+                                    <a href="#">
+                                        <img class="media-object" src="img/testimonial-img-3.jpg" alt="girl image">
+                                    </a>
+                                </div>
+                                <div class="media-body">
+                                    <h4 class="media-heading"><strong>Marla Jobs</strong> - <span>March 26, 2016</span></h4>
+                                    <div class="aa-product-rating">
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star-o"></span>
+                                    </div>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="media">
+                                <div class="media-left">
+                                    <a href="#">
+                                        <img class="media-object" src="img/testimonial-img-3.jpg" alt="girl image">
+                                    </a>
+                                </div>
+                                <div class="media-body">
+                                    <h4 class="media-heading"><strong>Marla Jobs</strong> - <span>March 26, 2016</span></h4>
+                                    <div class="aa-product-rating">
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star-o"></span>
+                                    </div>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <h4>Add a review</h4>
+                    <div class="aa-your-rating">
+                        <p>Your Rating</p>
+                        <a href="#"><span class="fa fa-star-o"></span></a>
+                        <a href="#"><span class="fa fa-star-o"></span></a>
+                        <a href="#"><span class="fa fa-star-o"></span></a>
+                        <a href="#"><span class="fa fa-star-o"></span></a>
+                        <a href="#"><span class="fa fa-star-o"></span></a>
+                    </div>
+                    <!-- review form -->
+                    <form action="" class="aa-review-form">
+                        <div class="form-group">
+                            <label for="message">Your Review</label>
+                            <textarea class="form-control" rows="3" id="message"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" id="name" placeholder="Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" id="email" placeholder="example@gmail.com">
+                        </div>
+
+                        <button type="submit" class="btn btn-danger btn-block aa-review-submit">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Subscribe section -->
+    <section id="aa-subscribe">
+        <div class="container-fluid bg-warning mt-3">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="aa-subscribe-area">
+                        <h3>Subscribe our newsletter </h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex, velit!</p>
+                        <form action="" class="aa-subscribe-form">
+                            <input type="email" name="" id="" placeholder="Enter your Email">
+                            <input type="submit" value="Subscribe" style="color: black;" class="bg-black">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- / Subscribe section -->
+    <!-- Content body end -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+    <script type="text/javascript" src="~/Content/src/jquery.simpleGallery.js"></script>
+    <script type="text/javascript" src="~/Content/src/jquery.simpleLens.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#test1 .simpleLens-thumbnails-container img').simpleGallery({
+                loading_image: '~/Images/loading.gif'
+            });
+
+            $('#test1 .simpleLens-big-image').simpleLens({
+                loading_image: '~/Images/loading.gif'
+            });
+        });
+    </script>
+</div>

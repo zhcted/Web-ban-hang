@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "Order";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model shopgiayonline.Framework.DONHANG
+
+<div class="container">
+    <div class="card card-login mx-auto mt-5">
+        <div class="card-header text-info"><h1>THÔNG TIN ĐƠN HÀNG</h1></div>
+        <div class="card-body">
+            @using (Html.BeginForm("Order", "GioHang", FormMethod.Post))
+            {
+                
+                <div class="form-group">
+                    <div class="form-label-group">
+                        <label for="inputMaKH">Mã khách hàng</label>
+                        <input readonly id="inputMaKH" name="MaKH" value="@Model.MaKH" class="form-control" placeholder="Mã khách hàng....." />
+                    </div>
+                </div>
+              
+
+                <div class="form-group">
+                    <div class="form-label-group">
+                        <label for="inputDate">Thời gian đặt hàng</label>
+                        <input type="text" id="inputDate" name="NGAYDH" value="@Model.NGAYDH" class="form-control" placeholder="Thời gian giao hàng....." />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-label-group">
+                        <label for="inputDate">Thành tiền</label>
+                        <input type="text" id="inputDate" name="NGAYDH" value="@Model.TongTien" class="form-control" placeholder="Thời gian giao hàng....." />
+                    </div>
+                </div>
+                <button type="submit" onclick="btn()" class="btn btn-lg btn-success btn-block">Đặt hàng</button>
+            }
+
+        </div>
+    </div>
+</div>
+
+<script>
+    function btn(){
+        alert("Đặt hàng thành công");
+    }
+</script>
